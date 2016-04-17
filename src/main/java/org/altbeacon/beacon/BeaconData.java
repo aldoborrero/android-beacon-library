@@ -5,12 +5,19 @@ package org.altbeacon.beacon;
  * data.
  */
 public interface BeaconData {
-    public Double getLatitude();
-    public void setLatitude(Double latitude);
-    public void setLongitude(Double longitude);
-    public Double getLongitude();
-    public String get(String key);
-    public void set(String key, String value);
-    public void sync(BeaconDataNotifier notifier);
-    public boolean isDirty();
+  Double getLatitude();
+
+  void setLatitude(Double latitude);
+
+  void setLongitude(Double longitude);
+
+  Double getLongitude();
+
+  String get(String key);
+
+  void set(String key, String value);
+
+  void sync(BeaconDataNotifier notifier);
+
+  boolean isDirty();
 }

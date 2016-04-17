@@ -12,7 +12,7 @@
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -31,10 +31,9 @@ package org.altbeacon.beacon;
  */
 public class BleNotAvailableException extends RuntimeException {
 
-    private static final long serialVersionUID = 2242747823097637729L;
+  private static final long serialVersionUID = 2242747823097637729L;
 
-    public BleNotAvailableException(String message) {
-            super(message);
-        }
-
+  public BleNotAvailableException(String message) {
+    super(message);
+  }
 }

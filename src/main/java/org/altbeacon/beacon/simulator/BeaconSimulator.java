@@ -1,12 +1,8 @@
 package org.altbeacon.beacon.simulator;
 
+import java.util.List;
 import org.altbeacon.beacon.Beacon;
 
-import java.util.List;
-
-/**
- * Created by dyoung on 4/18/14.
- */
 public interface BeaconSimulator {
-    public List<Beacon> getBeacons();
+  List<Beacon> getBeacons();
 }

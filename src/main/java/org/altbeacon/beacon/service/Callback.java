@@ -12,7 +12,7 @@
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -27,55 +27,53 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Parcelable;
-
-import org.altbeacon.beacon.logging.LogManager;
-
 import java.io.IOException;
 import java.io.Serializable;
+import org.altbeacon.beacon.logging.LogManager;
 
 public class Callback implements Serializable {
-    private static final String TAG = "Callback";
-    private transient Intent intent;
-    private String intentPackageName;
+  private static final String TAG = "Callback";
+  private transient Intent intent;
+  private String intentPackageName;
 
-    public Callback(String intentPackageName) {
-        this.intentPackageName = intentPackageName;
-        initializeIntent();
-    }
+  public Callback(String intentPackageName) {
+    this.intentPackageName = intentPackageName;
+    initializeIntent();
+  }
 
-    private void initializeIntent() {
-        if (intentPackageName != null) {
-            intent = new Intent();
-            intent.setComponent(new ComponentName(intentPackageName, "org.altbeacon.beacon.BeaconIntentProcessor"));
-        }
+  private void initializeIntent() {
+    if (intentPackageName != null) {
+      intent = new Intent();
+      intent.setComponent(
+          new ComponentName(intentPackageName, "org.altbeacon.beacon.BeaconIntentProcessor"));
     }
+  }
 
-    public Intent getIntent() {
-        return intent;
-    }
+  public Intent getIntent() {
+    return intent;
+  }
 
-    /**
-     * Tries making the callback, first via messenger, then via intent
-     *
-     * @param context
-     * @param dataName
-     * @param data
-     * @return false if it callback cannot be made
-     */
-    public boolean call(Context context, String dataName, Parcelable data) {
-        if (intent != null) {
-            LogManager.d(TAG, "attempting callback via intent: %s", intent.getComponent());
-            intent.putExtra(dataName, data);
-            context.startService(intent);
-            return true;
-        }
-        return false;
+  /**
+   * Tries making the callback, first via messenger, then via intent
+   *
+   * @param context
+   * @param dataName
+   * @param data
+   * @return false if it callback cannot be made
+   */
+  public boolean call(Context context, String dataName, Parcelable data) {
+    if (intent != null) {
+      LogManager.d(TAG, "attempting callback via intent: %s", intent.getComponent());
+      intent.putExtra(dataName, data);
+      context.startService(intent);
+      return true;
     }
+    return false;
+  }
 
-    @SuppressWarnings("unused")
-    private void readObject(java.io.ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        in.defaultReadObject();
-        initializeIntent();
-    }
+  @SuppressWarnings("unused") private void readObject(java.io.ObjectInputStream in)
+      throws IOException, ClassNotFoundException {
+    in.defaultReadObject();
+    initializeIntent();
+  }
 }

@@ -12,7 +12,7 @@
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -23,51 +23,51 @@
  */
 package org.altbeacon.beacon.service;
 
-import org.altbeacon.beacon.Region;
-
 import android.os.Parcel;
 import android.os.Parcelable;
+import org.altbeacon.beacon.Region;
 
 public class MonitoringData implements Parcelable {
-    @SuppressWarnings("unused")
-    private static final String TAG = "MonitoringData";
-    private final boolean inside;
-    private final Region region;
+  @SuppressWarnings("unused") private static final String TAG = "MonitoringData";
 
-    public MonitoringData (boolean inside, Region region) {
-        this.inside = inside;
-        this.region = region;
-    }
-    public boolean isInside() {
-        return inside;
-    }
-    public Region getRegion() {
-        return region;
-    }
+  private final boolean inside;
+  private final Region region;
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-    public void writeToParcel(Parcel out, int flags) {
-        out.writeByte((byte) (inside ? 1 : 0));
-        out.writeParcelable(region, flags);
+  public MonitoringData(boolean inside, Region region) {
+    this.inside = inside;
+    this.region = region;
+  }
 
-    }
+  public boolean isInside() {
+    return inside;
+  }
 
-    public static final Parcelable.Creator<MonitoringData> CREATOR
-            = new Parcelable.Creator<MonitoringData>() {
+  public Region getRegion() {
+    return region;
+  }
+
+  @Override public int describeContents() {
+    return 0;
+  }
+
+  public void writeToParcel(Parcel out, int flags) {
+    out.writeByte((byte) (inside ? 1 : 0));
+    out.writeParcelable(region, flags);
+  }
+
+  public static final Parcelable.Creator<MonitoringData> CREATOR =
+      new Parcelable.Creator<MonitoringData>() {
         public MonitoringData createFromParcel(Parcel in) {
-            return new MonitoringData(in);
+          return new MonitoringData(in);
         }
 
         public MonitoringData[] newArray(int size) {
-            return new MonitoringData[size];
+          return new MonitoringData[size];
         }
-    };
+      };
 
-    private MonitoringData(Parcel in) {
-        inside = in.readByte() == 1;
-        region = in.readParcelable(this.getClass().getClassLoader());
-    }
+  private MonitoringData(Parcel in) {
+    inside = in.readByte() == 1;
+    region = in.readParcelable(this.getClass().getClassLoader());
+  }
 }

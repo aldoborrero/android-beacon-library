@@ -204,7 +204,7 @@ public class Beacon implements Parcelable {
     protected Beacon(Parcel in) {
         int size = in.readInt();
 
-        this.mIdentifiers = new ArrayList<Identifier>(size);
+        this.mIdentifiers = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
             mIdentifiers.add(Identifier.parse(in.readString()));
         }
@@ -215,7 +215,7 @@ public class Beacon implements Parcelable {
         mBeaconTypeCode = in.readInt();
         mServiceUuid = in.readInt();
         int dataSize = in.readInt();
-        this.mDataFields = new ArrayList<Long>(dataSize);
+        this.mDataFields = new ArrayList<>(dataSize);
         for (int i = 0; i < dataSize; i++) {
             mDataFields.add(in.readLong());
         }
@@ -223,7 +223,7 @@ public class Beacon implements Parcelable {
         if (LogManager.isVerboseLoggingEnabled()) {
             LogManager.d(TAG, "reading "+extraDataSize+" extra data fields from parcel");
         }
-        this.mExtraDataFields = new ArrayList<Long>(extraDataSize);
+        this.mExtraDataFields = new ArrayList<>(extraDataSize);
         for (int i = 0; i < extraDataSize; i++) {
             mExtraDataFields.add(in.readLong());
         }
@@ -257,9 +257,9 @@ public class Beacon implements Parcelable {
      * Basic constructor that simply allocates fields
      */
     protected Beacon() {
-        mIdentifiers = new ArrayList<Identifier>(1);
-        mDataFields = new ArrayList<Long>(1);
-        mExtraDataFields = new ArrayList<Long>(1);
+        mIdentifiers = new ArrayList<>(1);
+        mDataFields = new ArrayList<>(1);
+        mExtraDataFields = new ArrayList<>(1);
     }
 
     /**
@@ -463,12 +463,9 @@ public class Beacon implements Parcelable {
             return false;
         }
         Beacon thatBeacon = (Beacon) that;
-        if (!this.mIdentifiers.equals(thatBeacon.mIdentifiers)) {
-            return false;
-        }
-        return sHardwareEqualityEnforced ?
-                this.getBluetoothAddress().equals(thatBeacon.getBluetoothAddress()) :
-                true;
+
+        return this.mIdentifiers.equals(thatBeacon.mIdentifiers) && (sHardwareEqualityEnforced
+            ? this.getBluetoothAddress().equals(thatBeacon.getBluetoothAddress()) : true);
     }
 
     /**
@@ -503,7 +500,7 @@ public class Beacon implements Parcelable {
             i++;
         }
         if (mParserIdentifier != null) {
-            sb.append(" type "+mParserIdentifier);
+            sb.append(" type ").append(mParserIdentifier);
         }
         return sb;
     }

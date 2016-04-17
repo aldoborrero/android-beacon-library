@@ -12,7 +12,7 @@
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -33,32 +33,32 @@ package org.altbeacon.beacon;
  * @author David G. Young
  */
 public interface MonitorNotifier {
-    /**
-     * Indicates the Android device is inside the Region of beacons
-     */
-    public static final int INSIDE = 1;
-    /**
-     * Indicates the Android device is outside the Region of beacons
-     */
-    public static final int OUTSIDE = 0;
+  /**
+   * Indicates the Android device is inside the Region of beacons
+   */
+  int INSIDE = 1;
+  /**
+   * Indicates the Android device is outside the Region of beacons
+   */
+  int OUTSIDE = 0;
 
-    /**
-     * Called when at least one beacon in a <code>Region</code> is visible.
-     * @param region a Region that defines the criteria of beacons to look for
-     */
-    public void didEnterRegion(Region region);
+  /**
+   * Called when at least one beacon in a <code>Region</code> is visible.
+   * @param region a Region that defines the criteria of beacons to look for
+   */
+  void didEnterRegion(Region region);
 
-    /**
-     * Called when no beacons in a <code>Region</code> are visible.
-     * @param region a Region that defines the criteria of beacons to look for
-     */
-    public void didExitRegion(Region region);
+  /**
+   * Called when no beacons in a <code>Region</code> are visible.
+   * @param region a Region that defines the criteria of beacons to look for
+   */
+  void didExitRegion(Region region);
 
-    /**
-     * Called with a state value of MonitorNotifier.INSIDE when at least one beacon in a <code>Region</code> is visible.
-     * Called with a state value of MonitorNotifier.OUTSIDE when no beacons in a <code>Region</code> are visible.
-     * @param state either MonitorNotifier.INSIDE or MonitorNotifier.OUTSIDE
-     * @param region a Region that defines the criteria of beacons to look for
-     */
-    public void didDetermineStateForRegion(int state, Region region);
+  /**
+   * Called with a state value of MonitorNotifier.INSIDE when at least one beacon in a <code>Region</code> is visible.
+   * Called with a state value of MonitorNotifier.OUTSIDE when no beacons in a <code>Region</code> are visible.
+   * @param state either MonitorNotifier.INSIDE or MonitorNotifier.OUTSIDE
+   * @param region a Region that defines the criteria of beacons to look for
+   */
+  void didDetermineStateForRegion(int state, Region region);
 }

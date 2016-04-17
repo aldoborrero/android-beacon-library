@@ -12,7 +12,7 @@
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -25,75 +25,84 @@ package org.altbeacon.beacon.service;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
+import java.io.Serializable;
 import org.altbeacon.beacon.Region;
 
-import java.io.Serializable;
-
 public class StartRMData implements Serializable, Parcelable {
-    private Region region;
-    private long scanPeriod;
-    private long betweenScanPeriod;
-    private boolean backgroundFlag;
-    private String callbackPackageName;
+  private Region region;
+  private long scanPeriod;
+  private long betweenScanPeriod;
+  private boolean backgroundFlag;
+  private String callbackPackageName;
 
-    public StartRMData(Region region, String callbackPackageName) {
-        this.region = region;
-        this.callbackPackageName = callbackPackageName;
-    }
-    public StartRMData(long scanPeriod, long betweenScanPeriod, boolean backgroundFlag) {
-        this.scanPeriod = scanPeriod;
-        this.betweenScanPeriod = betweenScanPeriod;
-        this.backgroundFlag = backgroundFlag;
-    }
+  public StartRMData(Region region, String callbackPackageName) {
+    this.region = region;
+    this.callbackPackageName = callbackPackageName;
+  }
 
-    public StartRMData(Region region, String callbackPackageName, long scanPeriod, long betweenScanPeriod, boolean backgroundFlag) {
-        this.scanPeriod = scanPeriod;
-        this.betweenScanPeriod = betweenScanPeriod;
-        this.region = region;
-        this.callbackPackageName = callbackPackageName;
-        this.backgroundFlag = backgroundFlag;
-    }
+  public StartRMData(long scanPeriod, long betweenScanPeriod, boolean backgroundFlag) {
+    this.scanPeriod = scanPeriod;
+    this.betweenScanPeriod = betweenScanPeriod;
+    this.backgroundFlag = backgroundFlag;
+  }
 
+  public StartRMData(Region region, String callbackPackageName, long scanPeriod,
+      long betweenScanPeriod, boolean backgroundFlag) {
+    this.scanPeriod = scanPeriod;
+    this.betweenScanPeriod = betweenScanPeriod;
+    this.region = region;
+    this.callbackPackageName = callbackPackageName;
+    this.backgroundFlag = backgroundFlag;
+  }
 
-    public long getScanPeriod() { return scanPeriod; }
-    public long getBetweenScanPeriod() { return betweenScanPeriod; }
-    public Region getRegionData() {
-        return region;
-    }
-    public String getCallbackPackageName() {
-        return callbackPackageName;
-    }
-    public boolean getBackgroundFlag() { return backgroundFlag; }
-    public int describeContents() {
-        return 0;
-    }
+  public long getScanPeriod() {
+    return scanPeriod;
+  }
 
-    public void writeToParcel(Parcel out, int flags) {
-        out.writeParcelable(region, flags);
-        out.writeString(callbackPackageName);
-        out.writeLong(scanPeriod);
-        out.writeLong(betweenScanPeriod);
-        out.writeByte((byte) (backgroundFlag ? 1 : 0));
-    }
+  public long getBetweenScanPeriod() {
+    return betweenScanPeriod;
+  }
 
-    public static final Parcelable.Creator<StartRMData> CREATOR
-            = new Parcelable.Creator<StartRMData>() {
+  public Region getRegionData() {
+    return region;
+  }
+
+  public String getCallbackPackageName() {
+    return callbackPackageName;
+  }
+
+  public boolean getBackgroundFlag() {
+    return backgroundFlag;
+  }
+
+  public int describeContents() {
+    return 0;
+  }
+
+  public void writeToParcel(Parcel out, int flags) {
+    out.writeParcelable(region, flags);
+    out.writeString(callbackPackageName);
+    out.writeLong(scanPeriod);
+    out.writeLong(betweenScanPeriod);
+    out.writeByte((byte) (backgroundFlag ? 1 : 0));
+  }
+
+  public static final Parcelable.Creator<StartRMData> CREATOR =
+      new Parcelable.Creator<StartRMData>() {
         public StartRMData createFromParcel(Parcel in) {
-            return new StartRMData(in);
+          return new StartRMData(in);
         }
 
         public StartRMData[] newArray(int size) {
-            return new StartRMData[size];
+          return new StartRMData[size];
         }
-    };
+      };
 
-    private StartRMData(Parcel in) {
-        region = in.readParcelable(StartRMData.class.getClassLoader());
-        callbackPackageName = in.readString();
-        scanPeriod = in.readLong();
-        betweenScanPeriod = in.readLong();
-        backgroundFlag = in.readByte() != 0;
-    }
-
+  private StartRMData(Parcel in) {
+    region = in.readParcelable(StartRMData.class.getClassLoader());
+    callbackPackageName = in.readString();
+    scanPeriod = in.readLong();
+    betweenScanPeriod = in.readLong();
+    backgroundFlag = in.readByte() != 0;
+  }
 }

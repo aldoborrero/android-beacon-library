@@ -12,7 +12,7 @@
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -81,29 +81,29 @@ import android.content.ServiceConnection;
  */
 public interface BeaconConsumer {
 
-    /**
-     * Called when the beacon service is running and ready to accept your commands through the BeaconManager
-     */
-    public void onBeaconServiceConnect();
+  /**
+   * Called when the beacon service is running and ready to accept your commands through the BeaconManager
+   */
+  void onBeaconServiceConnect();
 
-    /**
-     * Called by the BeaconManager to get the context of your Service or Activity.  This method is implemented by Service or Activity.
-     * You generally should not override it.
-     * @return the application context of your service or activity
-     */
-    public Context getApplicationContext();
+  /**
+   * Called by the BeaconManager to get the context of your Service or Activity.  This method is implemented by Service or Activity.
+   * You generally should not override it.
+   * @return the application context of your service or activity
+   */
+  Context getApplicationContext();
 
-    /**
-     * Called by the BeaconManager to unbind your BeaconConsumer to the  BeaconService.  This method is implemented by Service or Activity, and
-     * You generally should not override it.
-     * @return the application context of your service or activity
-     */
-    public void unbindService(ServiceConnection connection);
+  /**
+   * Called by the BeaconManager to unbind your BeaconConsumer to the  BeaconService.  This method is implemented by Service or Activity, and
+   * You generally should not override it.
+   * @return the application context of your service or activity
+   */
+  void unbindService(ServiceConnection connection);
 
-    /**
-     * Called by the BeaconManager to bind your BeaconConsumer to the  BeaconService.  This method is implemented by Service or Activity, and
-     * You generally should not override it.
-     * @return the application context of your service or activity
-     */
-    public boolean bindService(Intent intent, ServiceConnection connection, int mode);
+  /**
+   * Called by the BeaconManager to bind your BeaconConsumer to the  BeaconService.  This method is implemented by Service or Activity, and
+   * You generally should not override it.
+   * @return the application context of your service or activity
+   */
+  boolean bindService(Intent intent, ServiceConnection connection, int mode);
 }

@@ -24,39 +24,39 @@ package org.altbeacon.beacon.logging;
  * @since 2.2
  */
 public final class Loggers {
-    /** Empty Logger Singleton. */
-    private static final Logger EMPTY_LOGGER = new EmptyLogger();
+  /** Empty Logger Singleton. */
+  private static final Logger EMPTY_LOGGER = new EmptyLogger();
 
-    /** Debug Logger Singleton. */
-    private static final Logger VERBOSE_ANDROID_LOGGER = new VerboseAndroidLogger();
+  /** Debug Logger Singleton. */
+  private static final Logger VERBOSE_ANDROID_LOGGER = new VerboseAndroidLogger();
 
-    /** Warning Logger Singleton. */
-    private static final Logger WARNING_ANDROID_LOGGER = new WarningAndroidLogger();
+  /** Warning Logger Singleton. */
+  private static final Logger WARNING_ANDROID_LOGGER = new WarningAndroidLogger();
 
-    /**
-     * @return Get a logger that does nothing.
-     */
-    public static Logger empty() {
-        return EMPTY_LOGGER;
-    }
+  /**
+   * @return Get a logger that does nothing.
+   */
+  public static Logger empty() {
+    return EMPTY_LOGGER;
+  }
 
-    /**
-     * @return Get a logger that logs all messages to default Android logs.
-     * @see android.util.Log
-     */
-    public static Logger verboseLogger() {
-        return VERBOSE_ANDROID_LOGGER;
-    }
+  /**
+   * @return Get a logger that logs all messages to default Android logs.
+   * @see android.util.Log
+   */
+  public static Logger verboseLogger() {
+    return VERBOSE_ANDROID_LOGGER;
+  }
 
-    /**
-     * @return Get a logger that logs messages of warning and greater.
-     * @see android.util.Log
-     */
-    public static Logger warningLogger() {
-        return WARNING_ANDROID_LOGGER;
-    }
+  /**
+   * @return Get a logger that logs messages of warning and greater.
+   * @see android.util.Log
+   */
+  public static Logger warningLogger() {
+    return WARNING_ANDROID_LOGGER;
+  }
 
-    private Loggers() {
-        // No instances
-    }
+  private Loggers() {
+    // No instances
+  }
 }

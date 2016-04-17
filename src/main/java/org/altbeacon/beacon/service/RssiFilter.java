@@ -6,8 +6,9 @@ package org.altbeacon.beacon.service;
  */
 public interface RssiFilter {
 
-    public void addMeasurement(Integer rssi);
-    public boolean noMeasurementsAvailable();
-    public double calculateRssi();
+  void addMeasurement(Integer rssi);
 
+  boolean noMeasurementsAvailable();
+
+  double calculateRssi();
 }
